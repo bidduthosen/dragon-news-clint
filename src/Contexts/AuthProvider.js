@@ -16,7 +16,6 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password);
      }
 
-
     /*-----------------
         signInWithPopup
      --------------------*/
