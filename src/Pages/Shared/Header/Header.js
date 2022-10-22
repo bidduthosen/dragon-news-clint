@@ -42,10 +42,10 @@ const Header = () => {
                   </div>
                   <Link  className='me-3'>
                     
-                      {user?.photoURL ? <Image style={{height: '31px'}} roundedCircle src={user?.photoURL}></Image>
+                      {user?.photoURL ? <Image className='m-2' style={{height: '31px'}} roundedCircle src={user?.photoURL}></Image>
                       :
                       
-                      <FaUser style={{fontSize: "31px"}}/>
+                      <FaUser className='m-2' style={{fontSize: "31px"}}/>
                       }
                     </Link>
                   <Link onClick={handleSignOut}><Button size="sm">LogOut</Button></Link>

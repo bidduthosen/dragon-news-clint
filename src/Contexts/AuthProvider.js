@@ -8,6 +8,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [loader, setLoader] = useState(true);
 
     /*-----------------
         createUserWithEmailAndPassword
@@ -40,11 +41,12 @@ const AuthProvider = ({children}) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser=>{
             console.log('state change ', currentUser);
             setUser(currentUser);
+            setLoader(false);
         })
         return ()=> unSubscribe();
     },[])
 
-    const value = {user, signInGoogle, logOut, createUser, signInWithPass}
+    const value = {user, loader, signInGoogle, logOut, createUser, signInWithPass}
     return (
         <AuthContext.Provider value={value}>
             {children}
