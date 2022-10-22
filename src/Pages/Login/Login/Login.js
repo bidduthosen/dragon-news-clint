@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const Login = () => {
+    const [userError, setUserError] = useState('');
+
     const {signInWithPass} = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -20,8 +22,12 @@ const Login = () => {
             console.log(user);
             form.reset();
             navigate('/')
+            setUserError('');
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            setUserError(error.message);
+        });
     }
     return (
         <div>
@@ -35,6 +41,9 @@ const Login = () => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" name='password' placeholder="Password" required/>
                 </Form.Group>
+                <div className='mb-2 text-danger'>
+                <small>{userError}</small>
+                </div>
                 <Button variant="primary" type='submit'>
                   Login
                 </Button>

@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle, FaUser} from 'react-icons/fa';
 
 const Header = () => {
   const {user, logOut} = useContext(AuthContext);
@@ -45,7 +45,7 @@ const Header = () => {
                       {user?.photoURL ? <Image style={{height: '31px'}} roundedCircle src={user?.photoURL}></Image>
                       :
                       
-                      <FaUserCircle style={{fontSize: "31px"}}/>
+                      <FaUser style={{fontSize: "31px"}}/>
                       }
                     </Link>
                   <Link onClick={handleSignOut}><Button size="sm">LogOut</Button></Link>
