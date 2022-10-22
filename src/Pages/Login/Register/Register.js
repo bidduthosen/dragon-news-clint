@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const Register = () => {
     const {createUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const handleSubmit =(event)=>{
         event.preventDefault();
         const form = event.target;
@@ -17,6 +20,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            navigate('/')
         })
         .catch(error => console.log(error));
     }
