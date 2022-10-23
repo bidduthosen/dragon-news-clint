@@ -28,26 +28,30 @@ const Header = () => {
                 <Nav className="me-auto">
                   <Nav.Link href="#home">Home</Nav.Link>
                   <Nav.Link href="#link">Link</Nav.Link>
+
                   {/* left side nav category--all */}
                   <div className='d-md-none'>
                         <LeftSideNav></LeftSideNav>
                   </div>
                 </Nav>
+
                 {user?.uid ? 
                 <>
                 <Nav className='d-flex justify-content-between align-items-center'>
-                  <div className='me-3 text-primary'>{user?.displayName ? 
+                  <div className='me-3 text-primary'>
+                    {user?.displayName ? 
                     <>{user?.displayName}</> 
-                    : <><div style={{fontSize: "20px"}}>Unknown Person</div></>}
+                    : 
+                    <><div style={{fontSize: "20px"}}>Unknown Person</div></>
+                    }
                   </div>
-                  <Link  className='me-3'>
-                    
-                      {user?.photoURL ? <Image className='m-2' style={{height: '31px'}} roundedCircle src={user?.photoURL}></Image>
+
+                  <Link to='/profile' className='me-3'>
+                    {user?.photoURL ? <Image className='m-2' style={{height: '31px'}} roundedCircle src={user?.photoURL}></Image>
                       :
-                      
                       <FaUser className='m-2' style={{fontSize: "31px"}}/>
                       }
-                    </Link>
+                  </Link>
                   <Link onClick={handleSignOut}><Button size="sm">LogOut</Button></Link>
                 </Nav>
                 </>

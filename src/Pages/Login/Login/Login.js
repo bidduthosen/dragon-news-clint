@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [userError, setUserError] = useState('');
@@ -12,7 +13,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
 
 
-    const {signInWithPass} = useContext(AuthContext);
+    const {signInWithPass, setLoader} = useContext(AuthContext);
 
     const handleSubmit =(event)=>{
         event.preventDefault();
@@ -25,13 +26,19 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
-            navigate(from, {replace: true})
+            if(user.emailVerified){
+                navigate(from, {replace: true});
+            }
+            else{
+                toast.error("Your Email is not verify. Please verified!!")
+            }
             setUserError('');
         })
         .catch(error => {
             console.log(error);
             setUserError(error.message);
-        });
+        })
+        .finally(()=> setLoader(false))
     }
     return (
         <div>

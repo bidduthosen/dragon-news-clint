@@ -9,6 +9,7 @@ const PrivateRoute = ({children}) => {
     console.log('private route',user)
 
     if(loader){
+        console.log(loader)
         return <Spinner  animation="border" variant="success center"></Spinner>
     }
     if(!user){
